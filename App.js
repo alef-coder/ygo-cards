@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 import { buscarCartas } from './services/ygoApi';
+import CartaCard from './components/CartaCard';
 
 export default function App() {
   const [cartas, setCartas] = useState([]);
@@ -11,7 +12,7 @@ export default function App() {
     async function carregar() {
       try {
         const dados = await buscarCartas(20, 0);
-        setCartas(dados);
+        setCartas(dados.filter((c) => c.name !== '???'));
       } catch (e) {
         setErro(e.message);
       } finally {
@@ -24,8 +25,8 @@ export default function App() {
   if (carregando) {
     return (
       <View style={styles.centro}>
-        <ActivityIndicator size="large" />
-        <Text>Carregando cartas...</Text>
+        <ActivityIndicator size="large" color="#fff" />
+        <Text style={{ color: '#fff' }}>Carregando cartas...</Text>
       </View>
     );
   }
@@ -43,15 +44,25 @@ export default function App() {
       <FlatList
         data={cartas}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <Text style={styles.nome}>{item.name}</Text>}
+       renderItem={({ item }) => <CartaCard carta={item} />}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 60, paddingHorizontal: 16 },
-  centro: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+ container: {
+  flex: 1,
+  paddingTop: 60,
+  paddingHorizontal: 16,
+  backgroundColor: '#2d1b4e',
+},
+  centro: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#2d1b4e',
+},
   nome: { fontSize: 16, paddingVertical: 8 },
   erro: { color: 'red', fontSize: 16, padding: 16 },
 });
