@@ -17,3 +17,6 @@ YGOPRODeck e exibe uma lista de cartas de Yu-Gi-Oh!.
 1. Instale as dependências: `npm install`
 2. Inicie o projeto: `npx expo start --go`
 3. Escaneie o QR code com o app Expo Go
+
+## Print
+<img width="720" height="1000" alt="c9a40540-f405-4122-9e9c-cbedaf6c5297" src="https://github.com/user-attachments/assets/95eb1e0b-b317-4c0e-89fe-446474175130" />
