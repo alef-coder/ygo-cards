@@ -46,9 +46,9 @@ App mobile feito com **React Native + Expo** que consome a API pública
 3. Escaneie o QR code com o app Expo Go
 
 ## Prints
-<img width="540" height="1200" alt="image" src="https://github.com/user-attachments/assets/81054dce-fdde-4d83-91f3-07f8d6c6dde6" />
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/81054dce-fdde-4d83-91f3-07f8d6c6dde6" />
 
 <img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/adc9f876-7db0-40ae-a5cc-9de4b620e383" />
 
-<img width="180" height="400" alt="image" src="https://github.com/user-attachments/assets/cc91c484-4708-4d5c-8787-639104d67ed5" />
+<img width="360" height="800" alt="image" src="https://github.com/user-attachments/assets/cc91c484-4708-4d5c-8787-639104d67ed5" />
 
