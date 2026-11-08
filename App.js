@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { PaperProvider } from 'react-native-paper';
 import { tema } from './theme';
+import { FavoritosProvider } from './context/FavoritosContext';
 import CartasScreen from './screens/CartasScreen';
 import FavoritosScreen from './screens/FavoritosScreen';
 import DetalhesScreen from './screens/DetalhesScreen';
@@ -57,16 +58,18 @@ function Abas() {
 export default function App() {
   return (
     <PaperProvider theme={tema}>
-      <NavigationContainer theme={temaNavegacao}>
-        <Stack.Navigator>
-          <Stack.Screen name="Abas" component={Abas} options={{ headerShown: false }} />
-          <Stack.Screen
-            name="Detalhes"
-            component={DetalhesScreen}
-            options={{ title: 'Detalhes da carta' }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoritosProvider>
+        <NavigationContainer theme={temaNavegacao}>
+          <Stack.Navigator>
+            <Stack.Screen name="Abas" component={Abas} options={{ headerShown: false }} />
+            <Stack.Screen
+              name="Detalhes"
+              component={DetalhesScreen}
+              options={{ title: 'Detalhes da carta' }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritosProvider>
     </PaperProvider>
   );
 }

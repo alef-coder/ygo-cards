@@ -1,12 +1,15 @@
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
-import { Chip, Divider, Text, useTheme } from 'react-native-paper';
+import { Button, Chip, Divider, Text, useTheme } from 'react-native-paper';
+import { useFavoritos } from '../context/FavoritosContext';
 
 export default function DetalhesScreen({ route }) {
   const { carta } = route.params;
   const { colors } = useTheme();
+  const { ehFavorito, alternarFavorito } = useFavoritos();
 
   const imagem = carta.card_images?.[0]?.image_url;
   const ehMonstro = carta.atk !== undefined;
+  const favorito = ehFavorito(carta.id);
 
   return (
     <ScrollView
@@ -18,6 +21,14 @@ export default function DetalhesScreen({ route }) {
       <Text variant="headlineSmall" style={styles.centralizado}>
         {carta.name}
       </Text>
+
+      <Button
+        mode={favorito ? 'outlined' : 'contained'}
+        icon={favorito ? 'heart-off' : 'heart'}
+        onPress={() => alternarFavorito(carta)}
+      >
+        {favorito ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+      </Button>
 
       <View style={styles.chips}>
         <Chip icon="tag">{carta.type}</Chip>
