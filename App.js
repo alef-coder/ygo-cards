@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
 import { buscarCartas } from './services/ygoApi';
 import CartaCard from './components/CartaCard';
+import { tema } from './theme';
 
-export default function App() {
+function Cartas() {
   const [cartas, setCartas] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
@@ -26,7 +28,7 @@ export default function App() {
     return (
       <View style={styles.centro}>
         <ActivityIndicator size="large" color="#fff" />
-        <Text style={{ color: '#fff' }}>Carregando cartas...</Text>
+        <Text style={styles.textoClaro}>Carregando cartas...</Text>
       </View>
     );
   }
@@ -44,25 +46,33 @@ export default function App() {
       <FlatList
         data={cartas}
         keyExtractor={(item) => String(item.id)}
-       renderItem={({ item }) => <CartaCard carta={item} />}
+        renderItem={({ item }) => <CartaCard carta={item} />}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
- container: {
-  flex: 1,
-  paddingTop: 60,
-  paddingHorizontal: 16,
-  backgroundColor: '#2d1b4e',
-},
+  container: {
+    flex: 1,
+    paddingTop: 60,
+    paddingHorizontal: 16,
+    backgroundColor: '#2d1b4e',
+  },
   centro: {
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#2d1b4e',
-},
-  nome: { fontSize: 16, paddingVertical: 8 },
-  erro: { color: 'red', fontSize: 16, padding: 16 },
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2d1b4e',
+  },
+  textoClaro: { color: '#fff', marginTop: 12 },
+  erro: { color: '#ff8a8a', fontSize: 16, padding: 16 },
 });
+
+export default function App() {
+  return (
+    <PaperProvider theme={tema}>
+      <Cartas />
+    </PaperProvider>
+  );
+}
